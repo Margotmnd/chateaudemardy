@@ -1,0 +1,906 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Château de Mardy — Sejours d'exception</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #F5F0E8;
+    --stone: #E2D9C8;
+    --warm-white: #FAF8F4;
+    --charcoal: #2A2520;
+    --muted: #7A6F62;
+    --accent: #8B6F47;
+    --gold: #C4965A;
+    --green: #4A5E4A;
+    --border: rgba(42,37,32,0.12);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--warm-white);
+    color: var(--charcoal);
+    font-family: 'Jost', sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 24px 48px;
+    background: rgba(250,248,244,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--charcoal);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .nav-logo span { color: var(--gold); font-style: italic; }
+  .nav-links { display: flex; gap: 36px; list-style: none; }
+  .nav-links a {
+    font-size: 12px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+  .nav-links a:hover { color: var(--charcoal); }
+  .nav-cta {
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--warm-white);
+    background: var(--charcoal);
+    padding: 10px 24px;
+    text-decoration: none;
+    transition: background 0.3s;
+  }
+  .nav-cta:hover { background: var(--accent); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding-top: 80px;
+  }
+  .hero-left {
+    background: var(--cream);
+    padding: 80px 64px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-left::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%238B6F47' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    opacity: 0.6;
+  }
+  .hero-tag {
+    font-size: 11px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 24px;
+    position: relative;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .hero-tag::before {
+    content: '';
+    display: inline-block;
+    width: 32px; height: 1px;
+    background: var(--gold);
+  }
+  .hero-h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(52px, 5vw, 72px);
+    font-weight: 300;
+    line-height: 1.05;
+    color: var(--charcoal);
+    position: relative;
+    margin-bottom: 28px;
+  }
+  .hero-h1 em {
+    font-style: italic;
+    color: var(--accent);
+  }
+  .hero-sub {
+    font-size: 15px;
+    color: var(--muted);
+    line-height: 1.8;
+    max-width: 420px;
+    position: relative;
+    margin-bottom: 48px;
+  }
+  .hero-actions { display: flex; gap: 16px; align-items: center; position: relative; }
+  .btn-primary {
+    background: var(--charcoal);
+    color: var(--warm-white);
+    padding: 14px 32px;
+    font-family: 'Jost', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: background 0.3s;
+  }
+  .btn-primary:hover { background: var(--accent); }
+  .btn-ghost {
+    color: var(--charcoal);
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    text-decoration: none;
+    border-bottom: 1px solid var(--charcoal);
+    padding-bottom: 2px;
+    transition: color 0.3s, border-color 0.3s;
+  }
+  .btn-ghost:hover { color: var(--gold); border-color: var(--gold); }
+
+  .hero-right {
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-img-grid {
+    display: grid;
+    grid-template-rows: 60% 40%;
+    height: 100%;
+  }
+  .hero-img-main {
+    background: linear-gradient(160deg, #C8B89A 0%, #A89070 40%, #7A6550 100%);
+    position: relative;
+    overflow: hidden;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .chateau-illustration {
+    width: 80%;
+    opacity: 0.7;
+  }
+  .hero-img-bottom {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+  .hero-img-sm {
+    background: var(--stone);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 13px;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+    font-style: italic;
+    border: 1px solid rgba(255,255,255,0.3);
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-img-sm:first-child { background: #D4C5A9; }
+  .hero-img-sm:last-child { background: var(--green); color: rgba(255,255,255,0.6); }
+
+  /* STATS BAND */
+  .stats-band {
+    background: var(--charcoal);
+    padding: 32px 80px;
+    display: flex;
+    gap: 0;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .stat-item {
+    text-align: center;
+    flex: 1;
+    padding: 0 24px;
+    border-right: 1px solid rgba(255,255,255,0.1);
+  }
+  .stat-item:last-child { border-right: none; }
+  .stat-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 42px;
+    font-weight: 300;
+    color: var(--gold);
+    line-height: 1;
+  }
+  .stat-label {
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.45);
+    margin-top: 6px;
+  }
+
+  /* SECTION GÉNÉRIQUE */
+  section { padding: 120px 80px; }
+
+  .section-tag {
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 16px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .section-tag::before { content: ''; display: inline-block; width: 24px; height: 1px; background: var(--gold); }
+  .section-h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(36px, 3.5vw, 52px);
+    font-weight: 300;
+    line-height: 1.15;
+    color: var(--charcoal);
+    margin-bottom: 16px;
+  }
+  .section-h2 em { font-style: italic; color: var(--accent); }
+
+  /* CHAMBRES */
+  .rooms-section { background: var(--cream); }
+  .rooms-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 64px; }
+  .rooms-header-left { max-width: 560px; }
+  .rooms-desc { color: var(--muted); line-height: 1.8; font-size: 15px; margin-top: 12px; }
+  .rooms-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+  }
+  .room-card {
+    background: var(--warm-white);
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    position: relative;
+  }
+  .room-card:hover { transform: translateY(-4px); }
+  .room-card:first-child { grid-row: span 2; }
+  .room-img {
+    aspect-ratio: 3/2;
+    position: relative;
+    overflow: hidden;
+  }
+  .room-card:first-child .room-img { aspect-ratio: unset; height: 340px; }
+  .room-color-1 { background: linear-gradient(135deg, #C8B89A, #A08060); }
+  .room-color-2 { background: linear-gradient(135deg, #B8C8B8, #6A8A6A); }
+  .room-color-3 { background: linear-gradient(135deg, #C8B8A8, #907060); }
+  .room-color-4 { background: linear-gradient(135deg, #A8B8C8, #607080); }
+  .room-color-5 { background: linear-gradient(135deg, #C8C0B0, #908070); }
+  .room-img-label {
+    position: absolute;
+    inset: 0;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 32px;
+    font-style: italic;
+    color: rgba(255,255,255,0.4);
+  }
+  .room-info { padding: 24px 28px 28px; }
+  .room-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 400;
+    color: var(--charcoal);
+    margin-bottom: 6px;
+  }
+  .room-detail { font-size: 12px; color: var(--muted); letter-spacing: 0.05em; margin-bottom: 16px; }
+  .room-price {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    color: var(--accent);
+  }
+  .room-price span { font-size: 12px; font-family: 'Jost', sans-serif; color: var(--muted); font-weight: 300; }
+
+  /* WEEKENDS À THÈME */
+  .themes-section { background: var(--warm-white); }
+  .themes-intro { max-width: 600px; margin-bottom: 72px; }
+  .themes-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 1px; background: var(--border); }
+  .t-patrimoine::before { background: var(--accent); }
+  .theme-card {
+    background: var(--warm-white);
+    padding: 40px 32px;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    transition: background 0.4s;
+  }
+  .theme-card:hover { background: var(--cream); }
+  .theme-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s;
+  }
+  .theme-card:hover::before { transform: scaleX(1); }
+  .t-wellness::before { background: var(--green); }
+  .t-cuisine::before { background: var(--gold); }
+  .t-nature::before { background: #5A8A5A; }
+  .t-food::before { background: var(--accent); }
+  .theme-icon {
+    width: 48px; height: 48px;
+    border-radius: 50%;
+    margin-bottom: 24px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 22px;
+  }
+  .t-wellness .theme-icon { background: rgba(74,94,74,0.1); }
+  .t-cuisine .theme-icon { background: rgba(196,150,90,0.1); }
+  .t-nature .theme-icon { background: rgba(90,138,90,0.1); }
+  .t-food .theme-icon { background: rgba(139,111,71,0.1); }
+  .theme-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 26px;
+    font-weight: 400;
+    color: var(--charcoal);
+    margin-bottom: 12px;
+  }
+  .theme-desc {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.7;
+    margin-bottom: 24px;
+  }
+  .theme-badge {
+    display: inline-block;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    padding: 5px 12px;
+    border: 1px solid var(--border);
+    color: var(--muted);
+  }
+  .theme-dates { margin-top: 8px; font-size: 12px; color: var(--gold); letter-spacing: 0.05em; }
+
+  /* EXPÉRIENCE */
+  .experience-section {
+    background: var(--charcoal);
+    color: var(--cream);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    padding: 0;
+  }
+  .exp-left {
+    padding: 120px 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .exp-left .section-tag { color: var(--gold); }
+  .exp-left .section-h2 { color: var(--cream); }
+  .exp-left .section-h2 em { color: var(--gold); }
+  .exp-desc { color: rgba(245,240,232,0.6); line-height: 1.8; font-size: 15px; margin-bottom: 48px; }
+  .exp-list { list-style: none; display: flex; flex-direction: column; gap: 16px; }
+  .exp-list li {
+    display: flex; align-items: flex-start; gap: 16px;
+    font-size: 14px;
+    color: rgba(245,240,232,0.7);
+    line-height: 1.5;
+  }
+  .exp-list li::before {
+    content: '—';
+    color: var(--gold);
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+  .exp-right {
+    background: linear-gradient(135deg, #4A3A2A 0%, #2A1E14 100%);
+    min-height: 600px;
+    display: flex; align-items: center; justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .exp-right::after {
+    content: 'XVIIIe';
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 160px;
+    font-style: italic;
+    color: rgba(255,255,255,0.04);
+    position: absolute;
+    bottom: -20px;
+    right: -10px;
+  }
+  .exp-quote {
+    padding: 64px;
+    position: relative;
+    z-index: 1;
+  }
+  .exp-quote blockquote {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px;
+    font-style: italic;
+    font-weight: 300;
+    color: var(--cream);
+    line-height: 1.5;
+    margin-bottom: 24px;
+  }
+  .exp-quote cite { font-size: 12px; letter-spacing: 0.15em; color: var(--gold); text-transform: uppercase; font-style: normal; }
+
+  /* RÉSERVATION */
+  .booking-section {
+    background: var(--cream);
+    text-align: center;
+    padding: 120px 80px;
+  }
+  .booking-section .section-tag { justify-content: center; }
+  .booking-section .section-tag::before { display: none; }
+  .booking-section .section-h2 { margin-bottom: 16px; }
+  .booking-lead { color: var(--muted); font-size: 16px; line-height: 1.7; max-width: 520px; margin: 0 auto 56px; }
+  .booking-form {
+    display: flex;
+    gap: 0;
+    max-width: 780px;
+    margin: 0 auto;
+    background: var(--warm-white);
+    border: 1px solid var(--border);
+  }
+  .booking-form select,
+  .booking-form input {
+    flex: 1;
+    padding: 18px 24px;
+    font-family: 'Jost', sans-serif;
+    font-size: 13px;
+    font-weight: 300;
+    color: var(--charcoal);
+    background: transparent;
+    border: none;
+    border-right: 1px solid var(--border);
+    outline: none;
+    letter-spacing: 0.05em;
+    cursor: pointer;
+    -webkit-appearance: none;
+  }
+  .booking-form select option { background: var(--warm-white); }
+  .booking-form button {
+    padding: 18px 40px;
+    background: var(--charcoal);
+    color: var(--warm-white);
+    border: none;
+    font-family: 'Jost', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background 0.3s;
+    white-space: nowrap;
+  }
+  .booking-form button:hover { background: var(--accent); }
+
+  /* INSTAGRAM */
+  .insta-section { padding: 80px 80px; background: var(--warm-white); }
+  .insta-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px; }
+  .insta-tag { display: flex; align-items: center; gap: 10px; }
+  .insta-handle {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    color: var(--charcoal);
+    text-decoration: none;
+  }
+  .insta-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 2px; }
+  .insta-item {
+    aspect-ratio: 1;
+    overflow: hidden;
+    position: relative;
+    cursor: pointer;
+  }
+  .insta-item div {
+    width: 100%; height: 100%;
+    transition: transform 0.4s;
+  }
+  .insta-item:hover div { transform: scale(1.06); }
+  .ig-1 { background: linear-gradient(135deg, #D4C0A0, #A88060); }
+  .ig-2 { background: linear-gradient(135deg, #B8C4B0, #708060); }
+  .ig-3 { background: linear-gradient(135deg, #C0B0A0, #806050); }
+  .ig-4 { background: linear-gradient(135deg, #A0B4C0, #507080); }
+  .ig-5 { background: linear-gradient(135deg, #C4B8A8, #847060); }
+  .ig-6 { background: linear-gradient(135deg, #B0C0A8, #608050); }
+
+  /* FOOTER */
+  footer {
+    background: var(--charcoal);
+    color: rgba(245,240,232,0.5);
+    padding: 64px 80px 40px;
+  }
+  .footer-top {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 64px;
+    padding-bottom: 48px;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    margin-bottom: 32px;
+  }
+  .footer-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--cream);
+    margin-bottom: 16px;
+  }
+  .footer-logo span { color: var(--gold); }
+  .footer-tagline { font-size: 13px; line-height: 1.7; margin-bottom: 24px; }
+  .footer-social { display: flex; gap: 16px; }
+  .footer-social a {
+    width: 36px; height: 36px;
+    border: 1px solid rgba(255,255,255,0.15);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px; color: rgba(245,240,232,0.5);
+    text-decoration: none;
+    transition: border-color 0.3s, color 0.3s;
+  }
+  .footer-social a:hover { border-color: var(--gold); color: var(--gold); }
+  .footer-col h4 {
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--cream);
+    margin-bottom: 20px;
+  }
+  .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  .footer-col ul a { font-size: 13px; color: rgba(245,240,232,0.5); text-decoration: none; transition: color 0.3s; }
+  .footer-col ul a:hover { color: var(--gold); }
+  .footer-bottom { display: flex; justify-content: space-between; align-items: center; font-size: 11px; letter-spacing: 0.08em; }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .fade-up { animation: fadeUp 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94) both; }
+  .delay-1 { animation-delay: 0.15s; }
+  .delay-2 { animation-delay: 0.30s; }
+  .delay-3 { animation-delay: 0.45s; }
+
+  @media (max-width: 1024px) {
+    nav { padding: 20px 24px; }
+    .nav-links { display: none; }
+    section { padding: 80px 24px; }
+    .hero { grid-template-columns: 1fr; min-height: auto; }
+    .hero-left { padding: 80px 24px 48px; }
+    .hero-right { min-height: 400px; }
+    .stats-band { padding: 24px; flex-wrap: wrap; gap: 24px; }
+    .stat-item { border-right: none; }
+    .rooms-header { flex-direction: column; align-items: flex-start; gap: 16px; }
+    .rooms-grid { grid-template-columns: 1fr 1fr; }
+    .room-card:first-child { grid-row: span 1; }
+    .themes-grid { grid-template-columns: 1fr 1fr; }
+    .experience-section { grid-template-columns: 1fr; }
+    .booking-form { flex-direction: column; }
+    .booking-form select, .booking-form input { border-right: none; border-bottom: 1px solid var(--border); }
+    .insta-grid { grid-template-columns: repeat(3, 1fr); }
+    .footer-top { grid-template-columns: 1fr 1fr; gap: 40px; }
+    .insta-section { padding: 64px 24px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#">
+    <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;">
+      <!-- Couronne -->
+      <path d="M8 13 L4 8 L8 11 L12 6 L16 11 L20 6 L24 11 L28 8 L24 13 Z" fill="none" stroke="#C4965A" stroke-width="1.2" stroke-linejoin="round"/>
+      <!-- Corps du château -->
+      <rect x="7" y="13" width="18" height="13" fill="none" stroke="#C4965A" stroke-width="1.1"/>
+      <!-- Tours latérales -->
+      <rect x="4" y="16" width="6" height="10" fill="none" stroke="#C4965A" stroke-width="1"/>
+      <rect x="22" y="16" width="6" height="10" fill="none" stroke="#C4965A" stroke-width="1"/>
+      <!-- Fenêtres -->
+      <rect x="10" y="16" width="3" height="4" rx="1.5" fill="#C4965A" opacity="0.5"/>
+      <rect x="19" y="16" width="3" height="4" rx="1.5" fill="#C4965A" opacity="0.5"/>
+      <!-- Porte arche -->
+      <path d="M14 26 L14 21 Q16 19 18 21 L18 26" fill="none" stroke="#C4965A" stroke-width="1"/>
+      <!-- Sol -->
+      <line x1="2" y1="26" x2="30" y2="26" stroke="#C4965A" stroke-width="0.8" opacity="0.4"/>
+    </svg>
+    Château <span>de</span> Mardy
+  </a>
+  <ul class="nav-links">
+    <li><a href="#chambres">Chambres</a></li>
+    <li><a href="#weekends">Séjours à thème</a></li>
+    <li><a href="#experience">L'expérience</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="#reservation" class="nav-cta">Réserver</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero" style="padding:0">
+  <div class="hero-left">
+    <div class="hero-tag fade-up">Château du XVIIIe siècle — France</div>
+    <h1 class="hero-h1 fade-up delay-1">Un château,<br><em>une âme</em>,<br>une expérience</h1>
+    <p class="hero-sub fade-up delay-2">Bienvenue au Château de Mardy — un joyau caché du patrimoine français en cours de restauration, ouvert à ceux qui cherchent l'authenticité, la beauté lente et les expériences rares.</p>
+    <div class="hero-actions fade-up delay-3">
+      <a href="#reservation" class="btn-primary">Réserver un séjour</a>
+      <a href="#weekends" class="btn-ghost">Voir les week-ends à thème</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-img-grid">
+      <div class="hero-img-main room-color-1">
+        <svg class="chateau-illustration" viewBox="0 0 400 220" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- Château silhouette stylisée -->
+          <rect x="30" y="120" width="340" height="100" fill="rgba(255,255,255,0.08)"/>
+          <rect x="60" y="80" width="80" height="140" fill="rgba(255,255,255,0.1)"/>
+          <rect x="260" y="80" width="80" height="140" fill="rgba(255,255,255,0.1)"/>
+          <rect x="150" y="60" width="100" height="160" fill="rgba(255,255,255,0.12)"/>
+          <!-- Tours -->
+          <rect x="55" y="50" width="90" height="35" fill="rgba(255,255,255,0.08)"/>
+          <rect x="255" y="50" width="90" height="35" fill="rgba(255,255,255,0.08)"/>
+          <!-- Toit central -->
+          <polygon points="145,20 255,20 260,60 140,60" fill="rgba(255,255,255,0.1)"/>
+          <!-- Fenêtres -->
+          <rect x="80" y="100" width="16" height="24" fill="rgba(255,255,255,0.2)" rx="8"/>
+          <rect x="105" y="100" width="16" height="24" fill="rgba(255,255,255,0.2)" rx="8"/>
+          <rect x="279" y="100" width="16" height="24" fill="rgba(255,255,255,0.2)" rx="8"/>
+          <rect x="304" y="100" width="16" height="24" fill="rgba(255,255,255,0.2)" rx="8"/>
+          <rect x="165" y="80" width="16" height="28" fill="rgba(255,255,255,0.2)" rx="8"/>
+          <rect x="190" y="80" width="16" height="28" fill="rgba(255,255,255,0.2)" rx="8"/>
+          <rect x="219" y="80" width="16" height="28" fill="rgba(255,255,255,0.2)" rx="8"/>
+          <!-- Porte -->
+          <rect x="183" y="150" width="34" height="70" fill="rgba(255,255,255,0.15)" rx="17"/>
+          <!-- Arbres -->
+          <ellipse cx="20" cy="140" rx="18" ry="30" fill="rgba(74,94,74,0.3)"/>
+          <ellipse cx="380" cy="140" rx="18" ry="30" fill="rgba(74,94,74,0.3)"/>
+          <!-- Sol -->
+          <line x1="0" y1="220" x2="400" y2="220" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+        </svg>
+      </div>
+      <div class="hero-img-bottom">
+        <div class="hero-img-sm room-color-2">
+          <span>Jardins & Nature</span>
+        </div>
+        <div class="hero-img-sm room-color-5">
+          <span>Intérieurs d'époque</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats-band">
+  <div class="stat-item">
+    <div class="stat-num">XVIIIe</div>
+    <div class="stat-label">Siècle de construction</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">5</div>
+    <div class="stat-label">Chambres d'hôtes</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">4</div>
+    <div class="stat-label">Thèmes de week-end</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">∞</div>
+    <div class="stat-label">Slow living & patrimoine</div>
+  </div>
+</div>
+
+<!-- CHAMBRES -->
+<section class="rooms-section" id="chambres">
+  <div class="rooms-header">
+    <div class="rooms-header-left">
+      <div class="section-tag">Hébergement</div>
+      <h2 class="section-h2">Chambres & <em>Suites</em></h2>
+      <p class="rooms-desc">Chaque chambre est un voyage dans le temps. Décorées avec soin, elles mêlent le charme authentique du XVIIIe siècle au confort contemporain.</p>
+    </div>
+    <a href="#reservation" class="btn-ghost">Voir les disponibilités</a>
+  </div>
+  <div class="rooms-grid">
+    <div class="room-card">
+      <div class="room-img room-color-1"><div class="room-img-label">La Grande</div></div>
+      <div class="room-info">
+        <div class="room-name">Suite Mardy</div>
+        <div class="room-detail">Suite principale · 45 m² · Vue sur le parc</div>
+        <div class="room-price">À partir de 280€ <span>/ nuit</span></div>
+      </div>
+    </div>
+    <div class="room-card">
+      <div class="room-img room-color-2"><div class="room-img-label">La Verte</div></div>
+      <div class="room-info">
+        <div class="room-name">Chambre Jardin</div>
+        <div class="room-detail">Chambre double · 28 m² · Vue jardin</div>
+        <div class="room-price">À partir de 160€ <span>/ nuit</span></div>
+      </div>
+    </div>
+    <div class="room-card">
+      <div class="room-img room-color-3"><div class="room-img-label">La Pierre</div></div>
+      <div class="room-info">
+        <div class="room-name">Chambre du Manoir</div>
+        <div class="room-detail">Chambre double · 32 m² · Poutres apparentes</div>
+        <div class="room-price">À partir de 180€ <span>/ nuit</span></div>
+      </div>
+    </div>
+    <div class="room-card">
+      <div class="room-img room-color-4"><div class="room-img-label">La Tour</div></div>
+      <div class="room-info">
+        <div class="room-name">Chambre de la Tour</div>
+        <div class="room-detail">Chambre double · 25 m² · Vue panoramique</div>
+        <div class="room-price">À partir de 195€ <span>/ nuit</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WEEKENDS À THÈME -->
+<section class="themes-section" id="weekends">
+  <div class="themes-intro">
+    <div class="section-tag">Expériences</div>
+    <h2 class="section-h2">Week-ends <em>à thème</em></h2>
+    <p style="color: var(--muted); font-size: 15px; line-height: 1.8; margin-top: 12px;">Des séjours immersifs conçus pour ralentir, se reconnecter et vivre quelque chose d'unique dans un cadre d'exception.</p>
+  </div>
+  <div class="themes-grid">
+    <div class="theme-card t-wellness">
+      <div class="theme-icon">✦</div>
+      <div class="theme-name">Bien-être & Sérénité</div>
+      <p class="theme-desc">Yoga au lever du soleil dans les jardins, soins ayurvédiques, bains de forêt, méditation guidée. Un week-end pour se retrouver.</p>
+      <span class="theme-badge">2 nuits / 3 jours</span>
+      <div class="theme-dates">Prochaine date · Mai 2025</div>
+    </div>
+    <div class="theme-card t-cuisine">
+      <div class="theme-icon">◈</div>
+      <div class="theme-name">Cuisine & Terroir</div>
+      <p class="theme-desc">Ateliers cuisine avec des chefs locaux, marché du dimanche matin, dégustation de vins régionaux, dîner gastronomique au château.</p>
+      <span class="theme-badge">2 nuits / 3 jours</span>
+      <div class="theme-dates">Prochaine date · Juin 2025</div>
+    </div>
+    <div class="theme-card t-nature">
+      <div class="theme-icon">◇</div>
+      <div class="theme-name">Nature & Slow Living</div>
+      <p class="theme-desc">Cueillette sauvage, herbologie, balades dans les bois, photographie de nature, soirée lecture au coin du feu.</p>
+      <span class="theme-badge">2 nuits / 3 jours</span>
+      <div class="theme-dates">Prochaine date · Juillet 2025</div>
+    </div>
+    <div class="theme-card t-food">
+      <div class="theme-icon">◉</div>
+      <div class="theme-name">Food & Créativité</div>
+      <p class="theme-desc">Fermentation, boulangerie artisanale, création de conserves, food styling et photographie culinaire. Pour les passionnés.</p>
+      <span class="theme-badge">2 nuits / 3 jours</span>
+      <div class="theme-dates">Prochaine date · Août 2025</div>
+    </div>
+    <div class="theme-card t-patrimoine">
+      <div class="theme-icon" style="background: rgba(139,111,71,0.12);">⚜</div>
+      <div class="theme-name">Formations Patrimoine</div>
+      <p class="theme-desc">Initiation à la restauration du bâti ancien, taille de pierre, enduits à la chaux, charpente traditionnelle. Apprenez les gestes des artisans d'antan au cœur d'un chantier vivant.</p>
+      <span class="theme-badge">2 à 5 jours</span>
+      <div class="theme-dates">Sessions sur demande · Toute l'année</div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPÉRIENCE -->
+<section class="experience-section" id="experience" style="padding:0">
+  <div class="exp-left">
+    <div class="section-tag">L'histoire</div>
+    <h2 class="section-h2">Une beauté <em>cachée</em><br>depuis le XVIIIe</h2>
+    <p class="exp-desc">Le Château de Mardy est un trésor du patrimoine français en cours de restauration. Nous ouvrons ses portes à ceux qui souhaitent vivre cette aventure avec nous — partager la beauté brute d'un lieu en renaissance.</p>
+    <ul class="exp-list">
+      <li>Restauration artisanale respectueuse du patrimoine historique</li>
+      <li>Hébergement authentique dans les ailes rénovées du château</li>
+      <li>Cuisine de saison préparée avec les producteurs locaux</li>
+      <li>Jardins et domaine en pleine nature française</li>
+      <li>Suivez la restauration sur Instagram & YouTube</li>
+    </ul>
+  </div>
+  <div class="exp-right">
+    <div class="exp-quote">
+      <blockquote>« Vivre dans un château en restauration, c'est être le témoin vivant de l'histoire qui se réécrit. »</blockquote>
+      <cite>Journal de bord — Château de Mardy</cite>
+    </div>
+  </div>
+</section>
+
+<!-- RÉSERVATION -->
+<section class="booking-section" id="reservation">
+  <div class="section-tag">Réservation</div>
+  <h2 class="section-h2">Réservez votre <em>séjour</em></h2>
+  <p class="booking-lead">Choisissez vos dates et votre expérience. Nous vous répondons sous 24h pour confirmer la disponibilité et préparer votre séjour.</p>
+  <div class="booking-form">
+    <select>
+      <option value="">Type de séjour</option>
+      <option>Chambre d'hôtes</option>
+      <option>Week-end Bien-être</option>
+      <option>Week-end Cuisine</option>
+      <option>Week-end Nature</option>
+      <option>Week-end Food</option>
+      <option>Formation Patrimoine</option>
+      <option>Privatisation du château</option>
+    </select>
+    <input type="date" placeholder="Arrivée">
+    <input type="date" placeholder="Départ">
+    <select>
+      <option value="">Voyageurs</option>
+      <option>1 personne</option>
+      <option>2 personnes</option>
+      <option>3–4 personnes</option>
+      <option>5+ personnes</option>
+    </select>
+    <button type="button">Vérifier →</button>
+  </div>
+</section>
+
+<!-- INSTAGRAM FEED -->
+<section class="insta-section">
+  <div class="insta-header">
+    <div class="insta-tag">
+      <div class="section-tag" style="margin:0">Suivez l'aventure</div>
+    </div>
+    <a href="https://www.instagram.com/mardyandco/" target="_blank" class="insta-handle">@mardyandco</a>
+  </div>
+  <div class="insta-grid">
+    <div class="insta-item"><div class="ig-1"></div></div>
+    <div class="insta-item"><div class="ig-2"></div></div>
+    <div class="insta-item"><div class="ig-3"></div></div>
+    <div class="insta-item"><div class="ig-4"></div></div>
+    <div class="insta-item"><div class="ig-5"></div></div>
+    <div class="insta-item"><div class="ig-6"></div></div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer id="contact">
+  <div class="footer-top">
+    <div>
+      <div class="footer-logo">Château <span>de</span> Mardy</div>
+      <p class="footer-tagline">Un joyau caché du patrimoine français du XVIIIe siècle. Séjours authentiques, expériences rares, slow living.</p>
+      <div class="footer-social">
+        <a href="https://www.instagram.com/mardyandco/" target="_blank">In</a>
+        <a href="https://www.youtube.com/@chateaudemardy" target="_blank">Yt</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Hébergement</h4>
+      <ul>
+        <li><a href="#">Suite Mardy</a></li>
+        <li><a href="#">Chambre Jardin</a></li>
+        <li><a href="#">Chambre du Manoir</a></li>
+        <li><a href="#">Chambre de la Tour</a></li>
+        <li><a href="#">Privatisation</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Expériences</h4>
+      <ul>
+        <li><a href="#">Bien-être & Sérénité</a></li>
+        <li><a href="#">Cuisine & Terroir</a></li>
+        <li><a href="#">Nature & Slow Living</a></li>
+        <li><a href="#">Food & Créativité</a></li>
+        <li><a href="#">Sur mesure</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Informations</h4>
+      <ul>
+        <li><a href="#">Notre histoire</a></li>
+        <li><a href="#">La restauration</a></li>
+        <li><a href="#">Accès & Contact</a></li>
+        <li><a href="#">Presse</a></li>
+        <li><a href="#">Mentions légales</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 Château de Mardy — Tous droits réservés</span>
+    <span>Fait avec passion · France</span>
+  </div>
+</footer>
+
+</body>
+</html>
